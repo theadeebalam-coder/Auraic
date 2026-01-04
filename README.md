@@ -1,0 +1,2 @@
+# Auraic
+Artificial intelligence 
