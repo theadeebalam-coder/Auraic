@@ -1,0 +1,8 @@
+{
+  "name": "auraic-ai",
+  "type": "module",
+  "dependencies": {
+    "express": "^4.18.2",
+    "node-fetch": "^3.3.2"
+  }
+}
