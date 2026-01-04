@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Auraic AI</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont;
+  background: #faf9f6;
+  color: #111;
+}
+
+header {
+  padding: 16px 20px;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.container {
+  padding: 20px;
+}
+
+h1 {
+  font-size: 32px;
+  line-height: 1.2;
+}
+
+h1 span {
+  color: #bbb;
+}
+
+.search-box {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+input {
+  flex: 1;
+  padding: 16px;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+}
+
+button {
+  padding: 16px 20px;
+  border-radius: 20px;
+  border: none;
+  background: #111;
+  color: #fff;
+  cursor: pointer;
+}
+
+#response {
+  margin-top: 30px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 20px;
+  line-height: 1.6;
+  display: none;
+}
+</style>
+</head>
+
+<body>
+
+<header>Auraic</header>
+
+<div class="container">
+  <h1>
+    Curating your <br />
+    <span>intelligent answers.</span>
+  </h1>
+
+  <div class="search-box">
+    <input id="prompt" placeholder="Ask anything..." />
+    <button onclick="askAI()">Ask</button>
+  </div>
+
+  <div id="response"></div>
+</div>
+
+<script>
+async function askAI() {
+  const prompt = document.getElementById("prompt").value;
+  const box = document.getElementById("response");
+  box.style.display = "block";
+  box.innerText = "Thinking...";
+
+  const res = await fetch("https://YOUR-BACKEND-URL/api/ai", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ prompt })
+  });
+
+  const data = await res.json();
+  box.innerText = data.reply;
+}
+</script>
+
+</body>
+</html>
